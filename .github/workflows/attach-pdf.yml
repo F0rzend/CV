@@ -1,0 +1,36 @@
+name: Attach pdf
+
+on: 
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+
+    - name: Install generation tool
+      run: npm i -g md-to-pdf
+      shell: bash
+
+    - name: Generate
+      run: md-to-pdf README.md
+      shell: bash
+    
+    - uses: ncipollo/release-action@v1
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        artifacts: "README.pdf"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        draft: true
