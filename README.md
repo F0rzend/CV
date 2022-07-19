@@ -1,6 +1,6 @@
 # Жогаль Константин
 
-**Junior Backend Developer (Golang/Python)**
+**Backend Developer (Golang/Python)**
 
 ## Навыки
 
