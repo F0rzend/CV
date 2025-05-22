@@ -24,7 +24,7 @@ jobs:
       shell: bash
 
     - name: Generate
-      run: md-to-pdf README.md --no-sandbox
+      run: md-to-pdf README.md --launch-options='{"args":["--no-sandbox"]}'
       shell: bash
     
     - uses: ncipollo/release-action@v1
